@@ -1,0 +1,7 @@
+setwd("~/Scrivania/exploratory data/Assignment_2")
+NEI <- readRDS("summarySCC_PM25.rds")
+SCC <- readRDS("Source_Classification_Code.rds")
+pm25sum <- aggregate(Emissions ~ year, data = NEI, sum)
+png(filename = "plot1.png")
+barplot(pm25sum$Emissions, names.arg = pm25sum$year, ylab = "PM 2.5 Total Emissions (tons)", xlab = "Year")
+dev.off()
