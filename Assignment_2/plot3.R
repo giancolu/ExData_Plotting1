@@ -1,0 +1,10 @@
+setwd("~/Scrivania/exploratory data/Assignment_2")
+NEI <- readRDS("summarySCC_PM25.rds")
+SCC <- readRDS("Source_Classification_Code.rds")
+NEI1 <- NEI[NEI$fips == "24510",]
+NEI1$year <- as.factor(NEI1$year)
+NEI1$type <- as.factor(NEI1$type)
+pm25sumbatype <- aggregate(Emissions ~ year + type, data = NEI1, sum)
+png(filename = "plot3.png")
+qplot(year, Emissions, data = NEI1, facets = .~type, stat = "identity", geom = "bar")
+dev.off()
